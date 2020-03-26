@@ -5,20 +5,20 @@
         アカウント名
       %ul.side__header--box__menu
         %li.side__header--box__menu__new
-          %a( href='#')
+          = link_to "#" do
             %i.far.fa-edit
         %li.side__header--box__menu__edit
-          %a( href='##')
+          = link_to "##" do
             %i.fas.fa-cog
   
   .group__list
-    %a( href='練習1')
+    = link_to "練習1" do
       .group
         %p.group__group--name
           練習1
         %p.group__latest--message
           最後のメッセージ出力
-    %a( href='練習2')
+    = link_to "練習2" do
       .group
         %p.group__group--name
           練習2
