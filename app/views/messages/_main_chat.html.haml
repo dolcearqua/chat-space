@@ -1,0 +1,34 @@
+.chat--main
+  
+  .main--header
+    .main--header__left--box
+      %h2.main--header__left--box__group
+        group
+      %ul.main--header__left--box__member--list
+        member-list :
+        %li.main--header__left--box__member--list__member
+          abc
+    %a( href='edit')
+      .main--header__edit--btn
+        edit
+  
+  .messages
+    .message
+      .message__info
+        %p.message__info__talker
+          アカウント名
+        %p.message__info__date
+          日付        
+      %p.message__text
+        テキスト
+ 
+  .form
+    %form(id="new--message" class="new--message" enctype="multipart/form-data" action="#" accept-charset="UTF-8" method="post")
+      %input(name="utf-8" type="hidden" value="#")
+      %input(type="hidden" name="#" value="auZiPRqxo+tAnvqf1AKoSzY7RO3Q4zmCkshGZGHQFGidUv0FPQ+d9OJLYleDexHn0e4BR2ULCBvqt6tkhN4SZg==")
+      .input--box
+        %input(placeholder="メッセージを入力" class="input--box__text" type="text" name="message" id="message__content")
+        %label(class="input--box__image" for="message__image")
+          %i.fas.fa-images
+          %input(class="input--box__image__file" type="file" name="message" id="message__image")
+      %input(type="submit" name="commit" value="send" class="submit-btn" data-disable-with="send")
