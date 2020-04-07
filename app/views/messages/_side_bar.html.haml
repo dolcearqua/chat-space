@@ -1,26 +1,21 @@
-.side__main
+.side--main
   .side__header
     .side__header--box
       %p.side__header--box__user-name
         = current_user.name
       %ul.side__header--box__menu
         %li.side__header--box__menu__new
-          = link_to "#" do
+          = link_to new_group_path do
             %i.far.fa-edit
         %li.side__header--box__menu__edit
           = link_to edit_user_path(current_user) do
             %i.fas.fa-cog
   
   .group__list
-    = link_to "練習1" do
+    - current_user.groups.each do |group|
       .group
-        %p.group__group--name
-          練習1
-        %p.group__latest--message
-          最後のメッセージ出力
-    = link_to "練習2" do
-      .group
-        %p.group__group--name
-          練習2
-        %p.group__latest--message
-          最後のメッセージ出力2
+        = link_to group_messages_path(group) do
+          %p.group__group--name
+            = group.name
+          %p.group__latest--message
+            = group.show_last_message

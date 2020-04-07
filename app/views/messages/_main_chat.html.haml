@@ -1,34 +1,23 @@
 .chat--main
-  
   .main--header
     .main--header__left--box
       %h2.main--header__left--box__group
-        group
+        = @group.name
       %ul.main--header__left--box__member--list
-        member-list :
-        %li.main--header__left--box__member--list__member
-          abc
-    = link_to "edit" do
-      .main--header__edit--btn
-        edit
-  
+        Member :
+        - @group.users.each do |user|
+          = user.name
+    .main--header__edit--btn
+      = link_to  edit_group_path(@group),class:"edit" do
+        Edit
   .messages
-    .message
-      .message__info
-        %p.message__info__talker
-          アカウント名
-        %p.message__info__date
-          日付        
-      %p.message__text
-        テキスト
- 
+    = render @messages
   .form
-    %form(id="new--message" class="new--message" enctype="multipart/form-data" action="#" accept-charset="UTF-8" method="post")
-      %input(name="utf-8" type="hidden" value="#")
-      %input(type="hidden" name="#" value="auZiPRqxo+tAnvqf1AKoSzY7RO3Q4zmCkshGZGHQFGidUv0FPQ+d9OJLYleDexHn0e4BR2ULCBvqt6tkhN4SZg==")
-      .input--box
-        %input(placeholder="メッセージを入力" class="input--box__text" type="text" name="message" id="message__content")
-        %label(class="input--box__image" for="message__image")
-          %i.fas.fa-images
-          %input(class="input--box__image__file" type="file" name="message" id="message__image")
-      %input(type="submit" name="commit" value="send" class="submit-btn" data-disable-with="send")
+    = form_for [@group, @message] do |f|
+      .input_area
+        = f.text_field :content, class: "new--message" ,placeholder: "type a message"
+        .input-box_area
+          = f.label :image, class: "input-box__image" do
+            %f.fas.fa-images
+            = f.file_field :image, class: "input-btn"
+      = f.submit "Send", class: "submit-btn"
