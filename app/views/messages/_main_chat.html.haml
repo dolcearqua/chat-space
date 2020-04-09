@@ -1,0 +1,23 @@
+.chat--main
+  .main--header
+    .main--header__left--box
+      %h2.main--header__left--box__group
+        = @group.name
+      %ul.main--header__left--box__member--list
+        Member :
+        - @group.users.each do |user|
+          = user.name
+    .main--header__edit--btn
+      = link_to  edit_group_path(@group),class:"edit" do
+        Edit
+  .messages
+    = render @messages
+  .form
+    = form_for [@group, @message] do |f|
+      .input_area
+        = f.text_field :content, class: "new--message" ,placeholder: "type a message"
+        .input-box_area
+          = f.label :image, class: "input-box__image" do
+            %f.fas.fa-images
+            = f.file_field :image, class: "input-btn"
+      = f.submit "Send", class: "submit-btn"
